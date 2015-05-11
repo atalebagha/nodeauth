@@ -13,14 +13,14 @@ html
 						span.icon-bar
 						span.icon-bar
 						span.icon-bar
-					a.navbar-brand(href='#') Project name
+					a.navbar-brand(href='#') NodeAuth
 				#navbar.collapse.navbar-collapse
 					ul.nav.navbar-nav
-						li.active
+						li(class=(title == 'Members' ? 'active' : ''))
 							a(href='/') Members
-						li
+						li(class=(title == 'Register' ? 'active' : ''))
 							a(href='/users/register') Register
-						li
+						li(class=(title == 'Login' ? 'active' : ''))
 							a(href='/users/login') Login
 					ul.nav.navbar-nav.navbar-right
 						li
