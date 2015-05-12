@@ -32,14 +32,14 @@ router.post('/register', function(req, res, next){
 
     // file info
     var originalName    = req.files.profileimage.originalname;
-    var imageName       = req.files.profileimage.name;
+    var profileimage    = req.files.profileimage.name;
     var imageMime       = req.files.profileimage.mimetype;
     var imagePath       = req.files.profileimage.path;
     var imageExt        = req.files.profileimage.extension;
     var imageSize       = req.files.profileimage.size;
   } else {
     // set default image
-    var profileImageName = 'noimage.png';
+    var profileimage = 'noimage.png';
   }
 
   // Form Validation
@@ -69,7 +69,7 @@ router.post('/register', function(req, res, next){
       email: email,
       username: username,
       password: password,
-      profileimage: imageName
+      profileimage: profileimage
     });
 
     // Create User
