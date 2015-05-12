@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 var db = mongoose.connection;
 
 mongoose.connect('mongodb://localhost/nodeauth');
@@ -8,10 +9,13 @@ mongoose.connect('mongodb://localhost/nodeauth');
 var UserSchema = mongoose.Schema({
   username: {
     type: String,
-    index: true
+    index: true,
+    require:true
   },
   password:{
-    type: String
+    type: String,
+    required:true,
+    bcrypt:true
   },
   email: {
     type: String
@@ -27,5 +31,10 @@ var UserSchema = mongoose.Schema({
 var User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.createUser = function(newUser, callback) {
-  newUser.save(callback);
+  bcrypt.hash(newUser.password, 10, function(err, hash){
+    if(err) throw err;
+    newUser.password = hash;
+    newUser.save(callback);
+  })
+
 };
